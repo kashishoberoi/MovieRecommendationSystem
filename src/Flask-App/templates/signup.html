@@ -1,0 +1,47 @@
+<html>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+   <body>
+      <div ng-app="myApp" ng-controller="myCtrl" ng-init="Username=''">
+         <form action = "http://localhost:5000/signup" method = "POST">
+            <p>Enter Name:</p>
+            <p>Username:<input type = "text" name = "username" ng-model="Username"/></p>
+            <p>Password:<input type="password" name = "password" /></p>
+            <input type="checkbox" id="1" name="genre" value="Comedy" checked />Comedy
+            <input type="checkbox" id="2" name="genre" value="IMAX">IMAX
+            <input type="checkbox" id="3" name="genre" value="Sci-Fi">Sci-Fi
+            <input type="checkbox" id="4" name="genre" value="Children">Children
+            <input type="checkbox" id="5" name="genre" value="Mystery" checked />Mystery
+            <input type="checkbox" id="6" name="genre" value="Musical">Musical
+            <input type="checkbox" id="7" name="genre" value="Drama">Drama
+            <input type="checkbox" id="8" name="genre" value="Adventure" checked />Adventure
+            <input type="checkbox" id="9" name="genre" value="War">War
+            <input type="checkbox" id="10" name="genre" value="Western">Western
+            <input type="checkbox" id="11" name="genre" value="Animation">Animation
+            <input type="checkbox" id="12" name="genre" value="Thriller">Thriller
+            <input type="checkbox" id="13" name="genre" value="Crime">Crime
+            <input type="checkbox" id="14" name="genre" value="Documentary">Documentary
+            <input type="checkbox" id="15" name="genre" value="Fantasy">Fantasy
+            <input type="checkbox" id="16" name="genre" value="Horror">Horror
+            <input type="checkbox" id="17" name="genre" value="Romance">Romance
+            <input type="checkbox" id="18" name="genre" value="Action">Action
+            <input type="checkbox" id="19" name="genre" value="Film-Noir">Film-Noir
+            <p><input type = "submit" value = "submit" /></p>
+            {% raw %} 
+               <span  ng-bind="Username + SuggestedUsername()"></span></p>
+         {% endraw %}
+         </form>
+       </div>
+      <script>
+         var app = angular.module('myApp', []);
+         app.controller('myCtrl', function($scope) {
+               $scope.start = 0;
+               $scope.SuggestedUsername = function() {
+                  if($scope.Username!='')
+                  {
+                     return Math.floor(Math.random() * (999999 - 100000)) + 100000;
+                  }
+               };
+         });
+     </script>
+   </body>
+</html>

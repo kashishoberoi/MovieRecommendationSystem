@@ -1,0 +1,48 @@
+.hidden
+{
+    display: none;
+}
+.movie-box{
+	background-color: transparent;
+	color: black;
+	size: 100%;
+	font-size: 20px;
+	padding: 14px 16px;
+	 border: 1px solid black;
+	 border-radius: 5px;
+	 width: 20%;
+	 text-align: center;
+    height: 300px;
+    display: inline-block;
+    /* float: left; */
+}
+.genre-name
+{
+    clear: left;
+    display: inline-block;
+}
+.search-bars{
+    margin-top: 2%;
+  width: 100%;
+  opacity: 50%;
+  background-color:black;
+  color: antiquewhite;
+  height: max-content;
+}
+/* Style the search box inside the navigation bar */
+.search-bars input[type=text] {
+    /* float: right; */
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+  }
+
+  .search-bars input[type=submit] {
+    /* float: right; */
+    padding: 6px;
+    border: none;
+    font-size: 17px;
+    background-color: lightgreen;
+  }
