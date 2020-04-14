@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, request,render_template
-
+from flask import session, flash
 #DATABASE USER
 import sqlite3
 
@@ -229,7 +229,7 @@ def make_home_page(genre):
     
 #API CALLS
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'Kashishsagarvivek'  
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -241,16 +241,49 @@ def toakemeto():
             return render_template('login.html')
         if request.form['submit_button'] == 'SIGNUP':
             return render_template('signup.html')
-    
+
+
+
+# Searching Movies
+def search_userRatingsMovieName(search_string):
+    conn=sqlite3.connect("movieRecommenderSystem.db")
+    cur=conn.cursor()
+    cur.execute("SELECT * FROM movies WHERE lower(movieName) LIKE ?", (search_string.lower()+'%',))
+    rows=cur.fetchall()
+    conn.close()
+    return rows
+
 @app.route('/searchmovie',methods = ['POST','GET'])
 def searchmovie():
-    username = request.form['username']
-    return render_template('main.html',username = username)
+    searchBool = True
+    username = request.form['username'] #search_string
+    search_string = request.form['search_string']
+    if search_string=='':
+        movies = []
+        searchBool= False
+    movies = search_userRatingsMovieName(search_string)
+    return render_template('searchpage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
+
+# Searching Genre
+
+def search_genre(genre):
+    conn=sqlite3.connect("movieRecommenderSystem-base-2.db")
+    cur=conn.cursor()
+    cur.execute("SELECT * FROM movie_genre WHERE lower(genre) LIKE ?", (genre.lower()+'%',))
+    rows=cur.fetchall()
+    conn.close()
+    return rows
 
 @app.route('/searchgenre',methods = ['POST','GET'])
 def searchgenre():
-    username = request.form['username']
-    return render_template('main.html',username = username)
+    searchBool = True
+    username = request.form['username'] #search_string
+    search_string = request.form['search_string']
+    if search_string=='':
+        movies = []
+        searchBool= False
+    movies = search_genre(search_string)
+    return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
 
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
@@ -374,7 +407,6 @@ def search_movieCluster(clusterNumber):
     conn.close()
     return rows
 
-
 @app.route('/updaterating',methods=['POST'])
 def updaterating():
     if request.method == 'POST':
@@ -390,6 +422,14 @@ def updaterating():
             update_userRatings(username,movieId,rating)
     render_template('main.html',username = username,gen_dict = {})
 
+#Logout user and clear session
+
+@app.route('/userlogout',methods=['POST'])
+def userlogout():
+    session.clear()
+    flash('You have been logged out!', 'success')
+    return render_template('index.html')
+    
 if __name__ == '__main__':
     connect_userRegister()
     connect_userRatings()
