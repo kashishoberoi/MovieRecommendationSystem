@@ -14,7 +14,7 @@
 	 text-align: center;
     height: 300px;
     display: inline-block;
-    /* float: left; */
+    float: left;
 }
 .genre-name
 {

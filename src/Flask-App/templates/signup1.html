@@ -4,30 +4,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<style>
-   body, html {
-                  height: 100%;
-                  margin: 0;
-                  font-family: Arial, Helvetica, sans-serif;
-                  background-image: url("./../static/index.jpg");
-                  /* background- */
-                }
-                
-                * {
-                  box-sizing: border-box;
-                }
-</style>      
-<body>
-   <div class="bg-text">
-      <div class="page-header"><h1>SIGN UP</h1></div>
+   <body>
       <div ng-app="myApp" ng-controller="myCtrl" ng-init="Username=''">
          <form action = "http://localhost:5000/signup" method = "POST">
             <p>Enter Name:</p>
-            <p>Username:<input type = "text" class="form-control" name = "username" ng-model="Username"/></p>
-            <p>Password:<input type="password" class="form-control" name = "password" /></p>
+            <p>Username:<input type = "text" name = "username" ng-model="Username"/></p>
+            <p>Password:<input type="password" name = "password" /></p>
             <div class="btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-secondary active">
-            <input type="checkbox" id="1" name="genre" value="Comedy" checked/>Comedy
+            <input type="checkbox" id="1" name="genre" value="Comedy"/>Comedy
             </label>
             <label class="btn btn-secondary active">
             <input type="checkbox" id="2" name="genre" value="IMAX">IMAX
@@ -45,7 +30,7 @@
             <input type="checkbox" id="6" name="genre" value="Musical">Musical
             </label>
             <label class="btn btn-secondary active">
-            <input type="checkbox" id="7" name="genre" value="Drama" checked>Drama
+            <input type="checkbox" id="7" name="genre" value="Drama">Drama
             </label>
             <label class="btn btn-secondary active">
             <input type="checkbox" id="8" name="genre" value="Adventure"/>Adventure
@@ -78,13 +63,13 @@
             <input type="checkbox" id="17" name="genre" value="Romance">Romance
             </label>
             <label class="btn btn-secondary active">
-            <input type="checkbox" id="18" name="genre" value="Action" checked>Action
+            <input type="checkbox" id="18" name="genre" value="Action">Action
             </label>
             <label class="btn btn-secondary active">
             <input type="checkbox" id="19" name="genre" value="Film-Noir">Film-Noir
             </label>
             </div>
-            <p><input type = "submit" value = "submit" class="btn btn-light" /></p>
+            <p><input type = "submit" value = "submit" /></p>
             {% raw %} 
                <span  ng-bind="Username + SuggestedUsername()"></span></p>
          {% endraw %}
