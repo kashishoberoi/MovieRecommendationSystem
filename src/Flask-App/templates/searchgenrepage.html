@@ -15,7 +15,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="http://localhost:5000/userlogout"> Logout </a>
+        <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/userlogout" method = "POST">
+          <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
+          <p><input type ="submit" value = "Logout" class="btn btn-outline-danger my-2 my-sm-0"/></p>
+      </form>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/userratingpage" method = "POST">
@@ -33,26 +36,25 @@
     </form>
   </div>
 </nav>
-        <div class="your-recommendations-genres container-fluid card">
-            
+        <div class="your-recommendations-genres">
             {% if searchBool%}
             <h3 class="card-header">Your Search Result</h3>
+            <div class="card-columns m-3">
             {%for itr in movies%} 
-                    <div class="container">
-                        <div class="movie-box">
-                        {{itr[3]}}
-                        
-                        <br />
-                        <img src="./../static/movieImage.jpg" alt="MovieImage" style="width:50px;height:60px;">
-                            <form onsubmit="event.preventDefault();" id = "{{itr[3]}}">
-                                <input type="number" step="0.5" min="0" max="5" id="{{itr[2]}}" name="user_rating" value="">
+                        <div class="card text-center bg-dark h-75" style="width: 24rem;">
+                        <div class="card-body">
+                            <img src="./../static/movieImage.jpg" alt="MovieImage" class="card-img-top">
+                            <h3 class="card-title text-white">{{itr[3]}}</h3>
+                            <form action = "http://localhost:5000/updaterating" method = "POST">
+                                <input type="number" step="0.5" min="0" max="5" id="{{itr[2]}}" name="user_rating">
                                 <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
                                 <p class="hidden"><input type = "text" name="movieId" value={{itr[2]}} /></p>
-                                <p><input type = "submit"  class="btn btn-light" onclick="async('{{itr[3]}}')" /></p>
+                                <p><input type = "submit" value = "submit" /></p>
                             </form>
                         </div>
-                    </div>
+                        </div>
                     {%endfor%}
+            </div>
             {% else %}
                     <h3>Empty String Searched</h3>
             {% endif %}

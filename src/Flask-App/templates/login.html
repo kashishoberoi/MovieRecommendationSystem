@@ -18,13 +18,16 @@
                 }
 </style>      
 <body>
-   <div class="page-header"><h1>LOGIN</h1></div>
-         <form action = "http://localhost:5000/login" method = "POST">
-            <p>Enter Details:</p>
-            <p><input type = "text" class="form-control" name = "username" /></p>
-            <p><input type = "password" class="form-control" name = "password" /></p>
-            <p><input type = "submit" class="btn btn-light" value = "submit" /></p>
-         </form>
+   <div class="container-fluid pt-3 bg-dark">
+         <div class="page-header text-center text-white font-weight-bold "><h1>LOGIN</h1></div>
+               <form action = "http://localhost:5000/login" method = "POST">
+                  <h4 class="font-weight-bold text-white">Enter Details:</h4>
+                  <p><input type = "text" class="form-control" name = "username" /></p>
+                  <p><input type = "password" class="form-control" name = "password" /></p>
+                  <p><input type = "submit"  value = "submit" class="btn btn-success btn-block"/></p>
+               </form>
+               <br />
+   </div>
          
       </div>
       
