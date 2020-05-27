@@ -45,8 +45,7 @@
 </div>
 <h3 class="card-header">Your Recommendations</h3>
       <div class="card-columns m-3">
-          {%for itr in gen_cluster_movies%} 
-            <!-- <div class=""> col-sm-3 d-print-inline-block bg-secondary float-left p-2 m-2 h-75 text-center -->
+          {%for itr in gen_cluster_movies%}
               <div class="card text-center bg-dark h-75" style="width: 24rem;">
                 <div class="card-body">
                     <img src="./../static/movieImage.jpg" alt="MovieImage" class="card-img-top">
@@ -55,7 +54,7 @@
                             <input type="number" step="0.5" min="0" max="5" id="{{itr[0]}}" name="user_rating">
                             <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
                             <p class="hidden"><input type = "text" name="movieId" value={{itr[0]}} /></p>
-                            <input type = "submit" class="btn btn-light" value = "submit" />
+                            <p><button type = "submit" class="btn btn-light"onclick="async('{{itr[2]}}')">Submit</button></p>
                     </form>
               </div>
             </div>

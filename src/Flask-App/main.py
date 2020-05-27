@@ -234,7 +234,7 @@ app.config['SECRET_KEY'] = 'Kashishsagarvivek'
 def index():
     return render_template('index.html')
 
-@app.route('/toakemeto',methods = ['POST','GET'])
+@app.route('/takemeto',methods = ['POST','GET'])
 def toakemeto():
     if request.method == 'POST':
         if request.form['submit_button'] == 'LOGIN':
@@ -362,7 +362,6 @@ def get_user_rating_details(username):
         return []
     for itr in range(len(movieId_rating)):
         movieId_rating[itr] = list(movieId_rating[itr])
-        print(movieId_rating[itr][0][2:-1])
         movieId_rating[itr].append(search_movie_bymovieId(movieId_rating[itr][0][2:-1].encode('utf-8')))
     return movieId_rating
 
@@ -409,6 +408,7 @@ def search_movieCluster(clusterNumber):
 
 @app.route('/updaterating',methods=['POST'])
 def updaterating():
+    print("Hello")
     if request.method == 'POST':
         username = request.form['username']
         movieId = request.form['movieId']

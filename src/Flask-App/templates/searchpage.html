@@ -11,33 +11,32 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-    
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/userlogout" method = "POST">
-                    <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
-                    <p><input type ="submit" value = "Logout" class="btn btn-outline-danger my-2 my-sm-0"/></p>
-                </form>
-          </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/userratingpage" method = "POST">
-        <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Movies you Rated</button>
-        </form>
-        <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/searchmovie" method = "POST">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search Movie" aria-label="Search" name="search_string">
-          <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-        <pre>  </pre>
-        <form class="form-inline my-2 my-lg-0"  action = "http://localhost:5000/searchgenre" method = "POST">
-          <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
-          <input class="form-control mr-sm-2" type="search" placeholder="Search Genre" aria-label="Search" name="search_string">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/userlogout" method = "POST">
+                <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
+                <p><input type ="submit" value = "Logout" class="btn btn-outline-danger my-2 my-sm-0"/></p>
+            </form>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/userratingpage" method = "POST">
+    <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Movies you Rated</button>
+    </form>
+    <form class="form-inline my-2 my-lg-0" action = "http://localhost:5000/searchmovie" method = "POST">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Movie" aria-label="Search" name="search_string">
+      <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    <pre>  </pre>
+    <form class="form-inline my-2 my-lg-0"  action = "http://localhost:5000/searchgenre" method = "POST">
+      <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
+      <input class="form-control mr-sm-2" type="search" placeholder="Search Genre" aria-label="Search" name="search_string">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
       <h3 class="card-header">Your Search Result</h3>
         <div class="your-recommendations-genres card-columns m-3">    
             {% if searchBool%}
@@ -60,24 +59,15 @@
             {% endif %}
         </div>
         <script type="text/javascript">
-            // function sleep(lf_ms) {
-            //     return new Promise(resolve => setTimeout(resolve, lf_ms));
-            // }
-
-            // async function check_form() {
-            //     console.log('Test 1');
-            //     await sleep(1000);
-            //     console.log('Test 2');
-            // }
-            function async(id_){
-                var xhr = new XMLHttpRequest();
-                let form = document.getElementById(id_);
-                var data = new FormData(form);
-                
-                xhr.open('POST',"http://localhost:5000/updaterating",true);
-                xhr.send(data);
-            }
-            items = 0
-        </script>
+          function async(id_){
+              var xhr = new XMLHttpRequest();
+              let form = document.getElementById(id_);
+              var data = new FormData(form);
+              
+              xhr.open('POST',"http://localhost:5000/updaterating",true);
+              xhr.send(data);
+          }
+          items = 0
+      </script>
    </body>
 </html>
