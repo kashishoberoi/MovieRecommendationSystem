@@ -336,7 +336,7 @@ def search_userRatings(username,movieId):
 def update_userRatings(username,movieId,rating):
     conn=sqlite3.connect("movieRecommenderSystem.db")
     cur=conn.cursor()
-    cur.execute("UPDATE user SET rating = ? WHERE username=? AND movieId= ?",(rating,username,movieId))
+    cur.execute("UPDATE userRatings SET rating = ? WHERE username=? AND movieId= ?",(rating,username,movieId))
     conn.commit()
     conn.close()
 
@@ -417,12 +417,13 @@ def updaterating():
         rating = request.form['user_rating']
         user_details = search_userRegister_userOnly(username)[0]
         user_id = user_details[0]
-        print('Updated')
+        # print(search_userRatings(username,movieId))
         if len(search_userRatings(username,movieId)) == 0:
+            print('INSERTED')
             insert_userRatings(user_id,username,movieId,rating)
         else:
             update_userRatings(username,movieId,rating)
-    render_template('main.html',username = username,gen_dict = {})
+    return '200 OK'
 
 #Logout user and clear session
 

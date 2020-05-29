@@ -46,7 +46,7 @@
                         <div class="card-body">
                             <img src="./../static/movieImage.jpg" alt="MovieImage" class="card-img-top">
                             <h3 class="card-title text-white">{{itr[3]}}</h3>
-                            <form action = "http://localhost:5000/updaterating" method = "POST">
+                            <form action = "event.preventDefault();" method = "POST">
                                 <input type="number" step="0.5" min="0" max="5" id="{{itr[2]}}" name="user_rating">
                                 <p class="hidden"><input type = "text" name="username" value={{username}} /></p>
                                 <p class="hidden"><input type = "text" name="movieId" value={{itr[2]}} /></p>
