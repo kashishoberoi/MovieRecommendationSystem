@@ -307,7 +307,9 @@ def signup():
             genre = '|'.join(genre_fetch)
             genre_dict,gen_cluster_movies = make_home_page(genre)
             insert_userRegister(username,password,genre)
-            return render_template('main.html',username = username,gen_dict = genre_dict,gen_cluster_movies = gen_cluster_movies)
+            return render_template('main.html',username = username,gen_dict = genre_dict,gen_cluster_movies = gen_cluster_movies,status = 200)
+        else:
+            return render_template('signup.html',message = 'user already there',status = 300)
 #RATING and USERS
 def connect_userRatings():
     conn=sqlite3.connect("movieRecommenderSystem.db")
