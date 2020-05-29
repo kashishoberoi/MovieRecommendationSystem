@@ -262,7 +262,10 @@ def searchmovie():
         movies = []
         searchBool= False
     movies = search_userRatingsMovieName(search_string)
-    return render_template('searchpage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
+    if searchBool == False or len(movies) == 0:
+        return render_template('searchpage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool),204
+    else:
+        return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
 
 # Searching Genre
 
@@ -283,8 +286,10 @@ def searchgenre():
         movies = []
         searchBool= False
     movies = search_genre(search_string)
-    return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
-
+    if searchBool == False or len(movies) == 0:
+        return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool),204
+    else:
+        return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
 @app.route('/login',methods = ['POST', 'GET'])
 def login():
     if request.method == 'POST':
@@ -295,7 +300,7 @@ def login():
             genre_dict,gen_cluster_movies = make_home_page(genre)
             return render_template('main.html',username = username,gen_dict = genre_dict,gen_cluster_movies = gen_cluster_movies)
         else:
-            return render_template('login.html',message = 'user not found')
+            return render_template('login.html',message = 'user not found'),401
 
 @app.route('/signup',methods = ['POST'])
 def signup():
@@ -309,7 +314,7 @@ def signup():
             insert_userRegister(username,password,genre)
             return render_template('main.html',username = username,gen_dict = genre_dict,gen_cluster_movies = gen_cluster_movies,status = 200)
         else:
-            return render_template('signup.html',message = 'user already there',status = 300)
+            return render_template('signup.html',message = 'user already there',status = 300),401
 #RATING and USERS
 def connect_userRatings():
     conn=sqlite3.connect("movieRecommenderSystem.db")
@@ -364,7 +369,7 @@ def get_user_rating_details(username):
         return []
     for itr in range(len(movieId_rating)):
         movieId_rating[itr] = list(movieId_rating[itr])
-        movieId_rating[itr].append(search_movie_bymovieId(movieId_rating[itr][0][2:-1].encode('utf-8')))
+        movieId_rating[itr].append(search_movie_bymovieId(movieId_rating[itr][0]))
     return movieId_rating
 
 @app.route('/userratingpage',methods=['POST'])
@@ -373,7 +378,7 @@ def userratingpage():
         username = request.form['username']
         movies = get_user_rating_details(username)
         if len(movies)==0:
-            return render_template('userRatings.html',username = username,movie_list = movies,userRatingBool = False)
+            return render_template('userRatings.html',username = username,movie_list = movies,userRatingBool = False),204
     return render_template('userRatings.html',username = username,movie_list = movies,userRatingBool = True)
 
 
@@ -410,20 +415,20 @@ def search_movieCluster(clusterNumber):
 
 @app.route('/updaterating',methods=['POST'])
 def updaterating():
-    print("Hello")
     if request.method == 'POST':
         username = request.form['username']
         movieId = request.form['movieId']
         rating = request.form['user_rating']
-        user_details = search_userRegister_userOnly(username)[0]
-        user_id = user_details[0]
+        user_details = search_userRegister_userOnly(username)
+        if len(user_details) == 0:
+            return 'INVALID USER',401
+        user_id = user_details[0][0]
         # print(search_userRatings(username,movieId))
         if len(search_userRatings(username,movieId)) == 0:
-            print('INSERTED')
             insert_userRatings(user_id,username,movieId,rating)
         else:
             update_userRatings(username,movieId,rating)
-    return '200 OK'
+    return 'UPDATED',200
 
 #Logout user and clear session
 
