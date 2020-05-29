@@ -82,19 +82,29 @@ class BasicTests(unittest.TestCase):
         response = self.searchGen('oberoi','Horror')
         self.assertEqual(response.status,'200 OK')
     
-    #Invalid Search genre
+    #Invalid Search genre : Empty String
     def test_invalid_searchGenre(self):
         response = self.searchGen('oberoi','')
         self.assertEqual(response.status,'204 NO CONTENT')
+    
+    #Invalid Search genre : Wrong Input
+    def test_invalid_searchGenre2(self):
+        response = self.searchGen('oberoi','abcdef')
+        self.assertEqual(response.status,'204 NO CONTENT') 
 
     # Valid search movie
     def test_valid_searchMovie(self):
         response = self.searchMovie('oberoi','Love')
         self.assertEqual(response.status,'200 OK')
     
-    #Invalid Search movie
+    #Invalid Search movie : Empty String
     def test_invalid_searchMovie(self):
         response = self.searchMovie('oberoi','')
+        self.assertEqual(response.status,'204 NO CONTENT')
+    
+    #Invalid Search movie : Wrong Input
+    def test_invalid_searchMovie2(self):
+        response = self.searchMovie('oberoi','qwertyuioplkjhgfdsazxcvbnm')
         self.assertEqual(response.status,'204 NO CONTENT')
 
     #Valid user Rating page Loaded
