@@ -44,7 +44,6 @@ class BasicTests(unittest.TestCase):
             data=dict(username=username, search_string = search_string),
             follow_redirects=True
         )
-        # userratingpage
     def loadUserRatingPage(self,username):
         return self.app.post(
             '/userratingpage',
@@ -59,7 +58,7 @@ class BasicTests(unittest.TestCase):
         )
     # Valid User signup check
     def test_valid_user_registration(self):
-        response = self.register('newbie', 'newbie','Horror|Comedy')
+        response = self.register('newbies', 'newbies','Horror|Comedy')
         self.assertEqual(response.status,'200 OK')
 
     # Invalid User signup check

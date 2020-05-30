@@ -290,7 +290,7 @@ def searchgenre():
         return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool),204
     else:
         return render_template('searchgenrepage.html',username = username,movies=movies,search_string = search_string,searchBool=searchBool)
-@app.route('/login',methods = ['POST', 'GET'])
+@app.route('/login',methods = ['POST'])
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -312,6 +312,7 @@ def signup():
             genre = '|'.join(genre_fetch)
             genre_dict,gen_cluster_movies = make_home_page(genre)
             insert_userRegister(username,password,genre)
+            print(genre_fetch)
             return render_template('main.html',username = username,gen_dict = genre_dict,gen_cluster_movies = gen_cluster_movies,status = 200)
         else:
             return render_template('signup.html',message = 'user already there',status = 300),401
@@ -378,7 +379,7 @@ def userratingpage():
         username = request.form['username']
         movies = get_user_rating_details(username)
         if len(movies)==0:
-            return render_template('userRatings.html',username = username,movie_list = movies,userRatingBool = False),204
+            return render_template('userRatings.html',username = username,movie_list = movies,userRatingBool = False)
     return render_template('userRatings.html',username = username,movie_list = movies,userRatingBool = True)
 
 
@@ -419,11 +420,12 @@ def updaterating():
         username = request.form['username']
         movieId = request.form['movieId']
         rating = request.form['user_rating']
+        print(username)
         user_details = search_userRegister_userOnly(username)
         if len(user_details) == 0:
             return 'INVALID USER',401
         user_id = user_details[0][0]
-        # print(search_userRatings(username,movieId))
+        print(search_userRatings(username,movieId))
         if len(search_userRatings(username,movieId)) == 0:
             insert_userRatings(user_id,username,movieId,rating)
         else:
@@ -441,4 +443,4 @@ def userlogout():
 if __name__ == '__main__':
     connect_userRegister()
     connect_userRatings()
-    app.run(debug = True)
+    app.run(debug = False)

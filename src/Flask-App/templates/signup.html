@@ -25,68 +25,68 @@
             <h4 class="font-weight-bold text-white">Enter Details:</h4>
             <h6 class="font-weight-bold text-white">Username:<input type = "text" class="form-control" name = "username" ng-model="Username"/></h6>
             <h6 class="font-weight-bold text-white">Password:<input type="password" class="form-control" name = "password" /></h6>
-            <div class="btn-group-toggle" data-toggle="buttons">
-               <label class="btn btn-light btn-sm active">
+            <div class="form-check">
+               <label class="form-check-label text-light ">
                   <input type="checkbox" id="1" name="genre" value="Comedy" checked/>Comedy
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="2" name="genre" value="IMAX">IMAX
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="3" name="genre" value="Sci-Fi">Sci-Fi
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="4" name="genre" value="Children">Children
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="5" name="genre" value="Mystery"/>Mystery
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="6" name="genre" value="Musical">Musical
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="7" name="genre" value="Drama" checked>Drama
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="8" name="genre" value="Adventure"/>Adventure
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="9" name="genre" value="War">War
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="10" name="genre" value="Western">Western
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="11" name="genre" value="Animation">Animation
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="12" name="genre" value="Thriller">Thriller
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="13" name="genre" value="Crime">Crime
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="14" name="genre" value="Documentary">Documentary
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="15" name="genre" value="Fantasy">Fantasy
                </label>
-               <label class="btn btn-light btn-sm active">
-                  <input type="checkbox" id="16" name="genre" value="Horror" autocomplete="off">Horror
+               <label class="form-check-label text-light">
+                  <input type="checkbox" id="16" name="genre" value="Horror">Horror
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="17" name="genre" value="Romance">Romance
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="18" name="genre" value="Action" checked>Action
                </label>
-               <label class="btn btn-light btn-sm active">
+               <label class="form-check-label text-light">
                   <input type="checkbox" id="19" name="genre" value="Film-Noir">Film-Noir
                </label>
             </div>
             <p><input type="submit" value="submit" class="btn btn-success btn-block" name="submit_button" /></p>
             {% raw %} 
-               <span  ng-bind="Username + SuggestedUsername()"></span></p>
+               <span class="text-light" ng-bind="Username + SuggestedUsername()"></span></p>
          {% endraw %}
          </form>
          <br />
